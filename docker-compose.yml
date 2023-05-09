@@ -1,6 +1,6 @@
 services:
 
-  launc:
+  launch:
     build: .
     ports:
       - 80:80
