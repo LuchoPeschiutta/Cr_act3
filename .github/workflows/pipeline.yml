@@ -14,23 +14,16 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - name: Clonacion
-        run: git clone "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
+
+      - uses: actions/checkot@v3
+        with:
+          fetch-depth: 0
 
       - name: Test estatico
         run: echo "Aqui puedo hacer algunos test de código estatico"
 
       - name: Building
-        run: |
-          pwd
-          ls
-          cd ./"$GITHUB_WORKDIR"
-          pwd
-          ls
-          cd ./"$GITHUB_WORKDIR"
-          pwd
-          ls
-          docker build -t my_nginx .
+        run: docker build -t my_nginx .
 
       - name: Test de aceptacion
         run: echo "Aqui puedo lanzar el servicio localmente y realizar algunos tests de aceptacion"
