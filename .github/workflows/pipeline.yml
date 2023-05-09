@@ -29,6 +29,7 @@ jobs:
           cd "$GITHUB_WORKDIR"
           ls
           cd "$GITHUB_WORKDIR"
+          pwd
           ls
           docker build -t my_nginx .
 
