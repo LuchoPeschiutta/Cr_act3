@@ -1,0 +1,38 @@
+name: Pipeline
+
+on:
+
+  push:
+    branches: [main]
+
+  pull_request:
+    branches: [main]
+
+jobs:
+
+  test_build_deploy:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Clonacion
+        run: git clone "https://${{env.GITHUB_SERVER_URL}}/${{env.GITHUB_REPOSITORY}}"
+
+      - name: Test estatico
+        run: echo "Aqui puedo hacer algunos test de código estatico"
+
+      - name: Building
+        run: |
+          cd ${{env.GITHUB_WORKSPACE}}
+          docker build -t my_nginx .
+
+      - name: Test de aceptacion
+        run: echo "Aqui puedo lanzar el servicio localmente y realizar algunos tests de aceptacion"
+
+      - name: Carga de la imagen a un registro
+        run: echo "Aqui escribo la secuencia de comandos para cargar mi imagen en DockerHub, ECR u otros"
+
+      - name: Despliegue
+        run: echo "Aqui escribo la secuencia de comandos para que alguna plataforma descargue la imagen y la despiegue"
+
+
+    
