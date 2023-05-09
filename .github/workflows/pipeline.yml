@@ -21,9 +21,7 @@ jobs:
         run: echo "Aqui puedo hacer algunos test de código estatico"
 
       - name: Building
-        run: |
-          cd "./$GITHUB_WORKSPACE"
-          docker build -t my_nginx .
+        run: docker build -t my_nginx .
 
       - name: Test de aceptacion
         run: echo "Aqui puedo lanzar el servicio localmente y realizar algunos tests de aceptacion"
