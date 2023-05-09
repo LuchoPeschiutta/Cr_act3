@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Clonacion
-        run: git clone "https://$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
+        run: git clone "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
 
       - name: Test estatico
         run: echo "Aqui puedo hacer algunos test de código estatico"
