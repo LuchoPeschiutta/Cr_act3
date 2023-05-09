@@ -22,8 +22,11 @@ jobs:
 
       - name: Building
         run: |
+          pwd
           ls
           cd ..
+          pwd
+          cd "$GITHUB_WORKDIR"
           ls
           docker build -t my_nginx .
 
