@@ -24,10 +24,10 @@ jobs:
         run: |
           pwd
           ls
-          cd "$GITHUB_WORKDIR"
+          cd ./"$GITHUB_WORKDIR"
           pwd
           ls
-          cd "$GITHUB_WORKDIR"
+          cd ./"$GITHUB_WORKDIR"
           pwd
           ls
           docker build -t my_nginx .
