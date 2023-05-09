@@ -24,9 +24,8 @@ jobs:
         run: |
           pwd
           ls
-          cd ..
-          pwd
           cd "$GITHUB_WORKDIR"
+          pwd
           ls
           cd "$GITHUB_WORKDIR"
           pwd
