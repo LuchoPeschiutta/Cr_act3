@@ -41,7 +41,7 @@ jobs:
         #  docker rm my_run
         #  docker network rm my_net
         run: |
-          docker-compose run -d
+          docker-compose up -d
           curl 10.0.0.2
           docker-compose down
 
