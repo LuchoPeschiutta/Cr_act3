@@ -31,7 +31,7 @@ jobs:
         run: echo "Aqui puedo hacer algunos test de código estatico"
 
       - name: Building
-        run: docker build -t ${IMAGE_NAME} .
+        run: docker build -t ${{ env.IMAGE_NAME}} .
 
       - name: Test de aceptacion
         run: |
@@ -50,11 +50,11 @@ jobs:
       - name: Login DockerHub
         uses: docker/login-action@v2
         with:
-          username: ${DOCKERHUB_USERNAME}
-          password: ${{secrets.DOCKERHUB_PASSWORD}}
+          username: ${{ env.DOCKERHUB_USERNAME}}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Upload imagen
-        run: docker push ${IMAGE_NAME} ${DOCKERHUB_USERNAME}/${IMAGE_NAME}:${{github.sha}}
+        run: docker push ${{env.IMAGE_NAME}} ${{env.DOCKERHUB_USERNAME}}/${{ env.IMAGE_NAME }}:${{github.sha}}
 
       - name: Despliegue
         run: echo "Aqui escribo la secuencia de comandos para que alguna plataforma descargue la imagen y la despiegue" # Separar en un job aparte
