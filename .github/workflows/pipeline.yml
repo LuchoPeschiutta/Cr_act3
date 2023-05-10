@@ -2,11 +2,17 @@ name: Pipeline
 
 on:
 
+  
+
   push:
     branches: [main]
+    paths:
+      - "./indext.html"
 
   pull_request:
     branches: [main]
+    paths:
+      - "./indext.html"
 
 jobs:
 
@@ -26,13 +32,16 @@ jobs:
         run: docker build -t my_nginx .
 
       - name: Test de aceptacion
-        run: echo "Aqui puedo lanzar el servicio localmente y realizar algunos tests de aceptacion"
+        run: |
+          docker-compose up
+          curl localhost:80
+          docker-compose down
 
       - name: Carga de la imagen a un registro
-        run: echo "Aqui escribo la secuencia de comandos para cargar mi imagen en DockerHub, ECR u otros"
+        run: echo "Aqui escribo la secuencia de comandos para cargar mi imagen en DockerHub, ECR u otros" # Pushear a DockerHub
 
       - name: Despliegue
-        run: echo "Aqui escribo la secuencia de comandos para que alguna plataforma descargue la imagen y la despiegue"
+        run: echo "Aqui escribo la secuencia de comandos para que alguna plataforma descargue la imagen y la despiegue" # Separar en un job aparte
 
 
     
