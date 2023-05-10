@@ -33,10 +33,9 @@ jobs:
 
       - name: Test de aceptacion
         run: |
-          docker run --name my_run -dp 80:80 my_nginx
-          curl localhost
-          docker stop my_run
-          docker rm my_run
+          docker-compose up -d
+          curl 10.0.0.2
+          docker-compose down
 
       - name: Carga de la imagen a un registro
         run: echo "Aqui escribo la secuencia de comandos para cargar mi imagen en DockerHub, ECR u otros" # Pushear a DockerHub

@@ -4,3 +4,12 @@ services:
     build: .
     ports:
       - 80:80
+    networks:
+      mynetwork:
+        ipv4_address: 10.0.0.2
+
+networks:
+  mynetwork:
+    ipam:
+      config:
+        - subnet: 10.0.0.0/16
