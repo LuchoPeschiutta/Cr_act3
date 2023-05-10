@@ -33,17 +33,17 @@ jobs:
         run: docker build -t my_nginx .
 
       - name: Test de aceptacion
-        #run: |
-        #  docker network create --subnet=150.0.0.0/16 my_net
-        #  docker run --name my_run -p 80:80 --network my_net --ip 150.0.0.2 -d my_nginx
-        #  curl 150.0.0.2
-        #  docker stop my_run
-        #  docker rm my_run
-        #  docker network rm my_net
         run: |
-          docker-compose up -d
-          curl 150.0.0.2
-          docker-compose down
+          docker network create --subnet=150.0.0.0/16 my_net
+          docker run --name my_run --network my_net --ip 150.0.0.2 -d my_nginx
+          docker run --name my_test_machine --network my_net --ip 150.0.0.3 -d alpine:3.18 tail -f /dev/null
+          docker exec my_test_machine apk add curl
+          docker exec my_test_machine curl 150.0.0.2 -s
+          docker stop my_test_machine
+          docker rm my_test_machine
+          docker stop my_run
+          docker rm my_run
+          docker network rm my_net
 
       - name: Login DockerHub
         uses: docker/login-action@v2
