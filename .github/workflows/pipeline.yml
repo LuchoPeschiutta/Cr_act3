@@ -7,12 +7,12 @@ on:
   push:
     branches: [main]
     paths:
-      - "./indext.html"
+      - "./index.html"
 
   pull_request:
     branches: [main]
     paths:
-      - "./indext.html"
+      - "./index.html"
 
 jobs:
 
