@@ -55,8 +55,13 @@ jobs:
           docker tag my_nginx luchopeschiutta/my_nginx:${{github.sha}}
           docker push luchopeschiutta/my_nginx:${{github.sha}}
 
+  deploy:
+    runs-on: ubuntu-20.04
+    needs: build_upload
+    if: ${{ success() }}
+
+    steps:
+
       - name: Despliegue
-        run: echo "Aqui escribo la secuencia de comandos para que alguna plataforma descargue la imagen y la despiegue" # Separar en un job aparte
-
-
+        run: echo "Aqui escribo la secuencia de comandos para que alguna plataforma descargue la imagen y la despiegue"
     
