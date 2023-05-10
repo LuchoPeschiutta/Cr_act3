@@ -42,7 +42,7 @@ jobs:
         #  docker network rm my_net
         run: |
           docker-compose up -d
-          curl 10.0.0.2
+          curl 150.0.0.2
           docker-compose down
 
       - name: Login DockerHub
