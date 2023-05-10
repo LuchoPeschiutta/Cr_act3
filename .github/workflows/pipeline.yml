@@ -33,7 +33,7 @@ jobs:
 
       - name: Test de aceptacion
         run: |
-          docker-compose up
+          docker-compose up -d
           curl localhost:80
           docker-compose down
 
