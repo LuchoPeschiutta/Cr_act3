@@ -35,7 +35,7 @@ jobs:
       - name: Test de aceptacion
         run: |
           docker network create --subnet 10.0.0.0/16 my_net
-          docker run --name my_run --expose 80 --network my_net --ip 10.0.0.2 -d my_nginx
+          docker run --name my_run --expose 80 -p 80:80 --network my_net --ip 10.0.0.2 -d my_nginx
           curl 10.0.0.2
           docker stop my_run
           docker rm my_run
