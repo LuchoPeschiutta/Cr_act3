@@ -31,12 +31,12 @@ jobs:
         run: echo "Aqui puedo hacer algunos test de código estatico"
 
       - name: Building
-        run: docker build -t ${{env.DOCKERHUB_USERNAME}}/${{env.IMAGE_NAME}}:${{github.sha}} .
+        run: docker build -t ${{env.IMAGE_NAME}} .
 
       - name: Test de aceptacion
         run: |
           docker network create --subnet=150.0.0.0/16 my_net
-          docker run --name my_run --network my_net --ip 150.0.0.2 -d ${{env.DOCKERHUB_USERNAME}}/${{env.IMAGE_NAME}}
+          docker run --name my_run --network my_net --ip 150.0.0.2 -d ${{env.IMAGE_NAME}}
           docker run --name my_test_machine --network my_net --ip 150.0.0.3 -d alpine:3.18 tail -f /dev/null
           docker exec my_test_machine apk add curl
           docker exec my_test_machine curl 150.0.0.2 -s
@@ -53,7 +53,7 @@ jobs:
           password: ${{secrets.DOCKERHUB_PASSWORD}}
 
       - name: Upload imagen
-        run: docker push ${{env.IMAGE_NAME}}:${{github.sha}}
+        run: docker push ${{env.IMAGE_NAME}} ${{env.DOCKERHUB_USERNAME}}/${{env.IMAGE_NAME}}:${{github.sha}}
 
       - name: Despliegue
         run: echo "Aqui escribo la secuencia de comandos para que alguna plataforma descargue la imagen y la despiegue" # Separar en un job aparte
